@@ -5,8 +5,7 @@ Parameters:
     Default: FitBody-Amplify
   GitHubToken:
     Type: String
-    Description: The GitHub OAuth token stored in AWS Systems Manager Parameter Store
-    Default: /github/oauth/token
+    Description: The GitHub OAuth token for accessing the repository
   Repository:
     Type: String
     Default: https://github.com/KaziNizamul/FitBody
@@ -15,6 +14,10 @@ Parameters:
     Type: String
     Default: main
     Description: The branch name of your GitHub repository
+  AmplifyServiceRole:
+    Type: String
+    Default: arn:aws:iam::980500377192:role/LabRole
+    Description: The ARN of an existing IAM role for AWS Amplify
 
 Resources:
   AmplifyApp:
@@ -53,6 +56,7 @@ Resources:
             baseDirectory: server
             files:
               - '**/*'
+      ServiceRole: !Ref AmplifyServiceRole
 
   AmplifyBranch:
     Type: AWS::Amplify::Branch
@@ -62,26 +66,6 @@ Resources:
       EnableAutoBuild: true
       BasicAuthConfig:
         EnableBasicAuth: false
-
-  AmplifyRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: amplify.amazonaws.com
-            Action: sts:AssumeRole
-      Policies:
-        - PolicyName: AmplifyPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - amplify:*
-                Resource: '*'
 
 Outputs:
   AmplifyAppId:
