@@ -5,7 +5,8 @@ Parameters:
     Default: FitBody-Amplify
   GitHubToken:
     Type: String
-    Description: The GitHub OAuth token for accessing the repository
+    Description: The GitHub OAuth token stored in AWS Systems Manager Parameter Store
+    Default: /github/oauth/token
   Repository:
     Type: String
     Default: https://github.com/KaziNizamul/FitBody
