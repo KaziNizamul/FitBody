@@ -63,13 +63,6 @@ Resources:
       BasicAuthConfig:
         EnableBasicAuth: false
 
-  AmplifyBackendEnvironment:
-    Type: AWS::Amplify::BackendEnvironment
-    Properties:
-      AppId: !Ref AmplifyApp
-      EnvironmentName: dev
-      StackName: amplify-dev
-
   AmplifyRole:
     Type: AWS::IAM::Role
     Properties:
