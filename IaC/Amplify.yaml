@@ -4,7 +4,7 @@ Parameters:
     Type: String
     Default: FitBody-Amplify
   GitHubToken:
-    Type: AWS::SSM::Parameter::Value<String>
+    Type: String
     Description: The GitHub OAuth token stored in AWS Systems Manager Parameter Store
     Default: /github/oauth/token
   Repository:
