@@ -28,6 +28,7 @@ jobs:
   deploy_frontend:
     name: Deploy Frontend to S3
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
 
