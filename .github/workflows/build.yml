@@ -48,10 +48,10 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          AWS_S3_BUCKET: 'fitbody-frontend-build-file'
+          AWS_ACCESS_KEY_ID: 'ASIA6ISTANZUO7MCIAFO'
+          AWS_SECRET_ACCESS_KEY: '4J98wM72pMqhJA7+S1iCZID+Tci4yiVfYO8UIowL'
+          AWS_SESSION_TOKEN: 'IQoJb3JpZ2luX2VjEDcaCXVzLXdlc3QtMiJHMEUCIG0n6lG5OZZ66aRfZUC/VKCG1EAb7i//7q7jUQqR4ONhAiEAs5P3AeThyAcii4odM487wwvUBh5rh68yvtPqBGeov58qpgIIHxABGgw5ODA1MDAzNzcxOTIiDLoEfp6PM23bKtUSySqDArxvMTKzUPXs5nO11lbDM129j5ukxAmNzt3YjhAyzN5L1p2cCzabcl7RQ4V2Lj0xtFHeeCk6W+2K5bbRXFeBvweKcCyJR+XDdasSKnSn04GMDF08kdcVCZLwdMch9IUgMFtnqoPd+/4ai0d2hfSgr8hYeF00wSwC6Tmznet4Pn31KU+JEZusB3vCLp2v1egISWtoNGWlcqd6DTKCNHyMDiKRAhCWe5IZd/Mi2gFTxvlKoEACQ75Vcmacij99VoLw7wPGpqpWrADobtMJzlOxGFZUDEybA8cGBTfQGmblbT67aItpoPHrcvU3sFj7J9lrod9bHq/Z9DAuxE1SfEp6mEmC/iYwz4ibtQY6nQF+lrIDqZ/iaDqstzeVbW9kfrJ9IiuszFEWjg1/eLkycGifLAO5foE10ZniOUK1Nn0qMWHgoxw09JdyiGBXg45qMjgsBy8Yq/NFIM/Fzwt+l/gie2wSv5pejHb4ZsUN09n3jSjOTxH2A3+c6X3DmOlTbFLp7zF59ZHBiczADPAJCKUlHrptNcZb8pRs0G7lho/lZ9oiv+NSlh1/DZ4I'
           AWS_REGION: 'us-east-1'
           SOURCE_DIR: 'dist'
 
