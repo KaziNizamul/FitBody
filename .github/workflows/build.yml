@@ -60,6 +60,7 @@ jobs:
         with:
           aws-access-key-id: 'ASIA6ISTANZUHKPCO2WD'
           aws-secret-access-key: 'vaenrR+NNARkO81BRsbLeOEpbIOFeRnpvYOlWZ9Z'
+          aws_session_token: 'IQoJb3JpZ2luX2VjEEcaCXVzLXdlc3QtMiJGMEQCIG5Hx4CxJhzpczQP6SYHPJ5P2tFHr1pRe9aogHrt/CCUAiADXYNLYmdG9A0+sb9JClIW1xGs0Sgl7y5UUI/jTE2tpSqmAggwEAEaDDk4MDUwMDM3NzE5MiIMtaCxvuMKMlWPpaaiKoMCZP6OngNOmlT+qyol5XX6peZCnHy5Gichr07AkTI82R61v2lmgORPgjOf+8fBcpeC28H5LgU96UlJiA8rZn7T8jNIvGYK7kvqNHTb3jSUn8zAS8+/KVtQyFTAGgi4s+GcQmG4eN1NlDeSviw3AY4Gfr2tkyUADAFRbZtgQxXLupLRF4RyapbJqwslXH5hX83cNbIhTVWaX8kOQZ9DyjDUOJbT53f7sUkd3AmxZTPrZomV132Tt+ko8MZDRMCMkS/k8TeqbrBGy0CVoDxEJ0yD9mcqL6OAUewwKo9mOk4rVsq7qj3uCjwSxaGAUd3z7wXHYnArzoTIitDZAU3PdqiNx9FhpTDezJ61BjqeARC4FD0Wp/F2PaCO9R4STIw2KyB2ORY3foACXxsCqMsQLy1/MZkqIXjBL7Y/jQbvnhoEMBJ9Ir1Evzx3s33171Ki5ZIdVjxXP2d1DvmGJmD+dV09lb2X/egasK8oot4oM0YGxb2EqVyzbfezbgydNtmWnahMSQjrrtNJEz7uFWuk2NerqUzJg/2Xv7t4g0V+sWGeDJiPWWadcGj3b5Su'
           aws-region: 'us-east-1'
 
       - name: Sync files to S3
