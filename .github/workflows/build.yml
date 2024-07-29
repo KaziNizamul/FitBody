@@ -50,9 +50,9 @@ jobs:
         env:
           SOURCE_DIR: 'dist'
           AWS_REGION: 'us-east-1'
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: 'fitbody-frontend-build-file'
+          AWS_ACCESS_KEY_ID: 'ASIA6ISTANZUHKPCO2WD'
+          AWS_SECRET_ACCESS_KEY: 'vaenrR+NNARkO81BRsbLeOEpbIOFeRnpvYOlWZ9Z'
           AWS_GHA_ROLE: 'arn:aws:iam::980500377192:role/LabRole'
         
       # - name: Deploy to S3
