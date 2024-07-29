@@ -15,8 +15,10 @@ phases:
       - echo Fetching SSH key from Secrets Manager...
 
       - mkdir -p /root/.ssh
-      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text | jq -r .ssh-key > /root/.ssh/id_rsa
+      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /root/.ssh/id_rsa_temp
+      - sed 's/{"ssh-key":"\(.*\)"}/\1/' /root/.ssh/id_rsa_temp | sed 's/\\n/\n/g' > /root/.ssh/id_rsa
       - chmod 600 /root/.ssh/id_rsa
+      - rm /root/.ssh/id_rsa_temp
       
   pre_build:
     commands:
