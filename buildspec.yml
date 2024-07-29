@@ -18,6 +18,7 @@ phases:
       - cat /tmp/secret.json
       - sed -n 's/.*"ssh":"\([^"]*\)".*/\1/p' /tmp/secret.json | sed 's/\\n/\n/g' > /root/.ssh/id_rsa
       - cat /root/.ssh/id_rsa
+      - cat /tmp/secret.json
       - chmod 600 /root/.ssh/id_rsa
       - echo "SSH key permissions:"
       - ls -l /root/.ssh/id_rsa
