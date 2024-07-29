@@ -21,10 +21,7 @@ phases:
   post_build:
     commands:
       - echo Build completed
-      # - echo Packaging frontend artifacts...
-      # - cp -r dist/* .
-      # - aws s3 sync ./dist $S3_BUCKET
-      - aws s3 cp dist/* s3://${S3_BUCKET} --recursive
+      - aws s3 cp dist s3://${S3_BUCKET} --recursive
       - echo Build completed on `date`
 
 artifacts:
