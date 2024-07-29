@@ -3,11 +3,19 @@ version: 0.2
 env:
   variables:
     S3_BUCKET: "fitbody-bucket-1"
+    EC2_HOST: "54.167.250.60"
+    SECRET_NAME: "ssh-key"
 
 phases:
   install:
     commands:
       - echo Installing dependencies...
+      - npm install -g pm2
+
+      - echo Fetching SSH key from Secrets Manager...
+
+      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /root/.ssh/id_rsa
+      - chmod 600 /root/.ssh/id_rsa
       
   pre_build:
     commands:
@@ -19,11 +27,21 @@ phases:
       - echo Building frontend...
       - npm run build
 
+      - echo Running for backend...
+      - cd ../server
+      - npm install
+
   post_build:
     commands:
       - echo Build completed
+
+      - echo Deploying frontend to S3...
       - aws s3 cp dist s3://${S3_BUCKET} --recursive
+
+      - echo Deploying backend to EC2...
+      - ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ec2-user@${EC2_HOST} 'cd /home/ec2-user/FitBody/server && git pull origin main && npm install && pm2 restart all'
       - echo Build completed on `date`
+
 
 artifacts:
   files:
