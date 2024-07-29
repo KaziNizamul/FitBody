@@ -43,18 +43,28 @@ jobs:
       - name: Run Build
         run: npm run build
 
-      - name: Deploy to S3
-        uses: mirrorweb/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          SOURCE_DIR: 'dist'
-          AWS_REGION: 'us-east-1'
-          AWS_S3_BUCKET: 'fitbody-frontend-build-file'
-          AWS_ACCESS_KEY_ID: 'ASIA6ISTANZUHKPCO2WD'
-          AWS_SECRET_ACCESS_KEY: 'vaenrR+NNARkO81BRsbLeOEpbIOFeRnpvYOlWZ9Z'
-          AWS_GHA_ROLE: 'arn:aws:iam::980500377192:role/LabRole'
+      # - name: Deploy to S3
+      #   uses: mirrorweb/s3-sync-action@master
+      #   with:
+      #     args: --acl public-read --follow-symlinks --delete
+      #   env:
+      #     SOURCE_DIR: 'dist'
+      #     AWS_REGION: 'us-east-1'
+      #     AWS_S3_BUCKET: 'fitbody-frontend-build-file'
+      #     AWS_ACCESS_KEY_ID: 'ASIA6ISTANZUHKPCO2WD'
+      #     AWS_SECRET_ACCESS_KEY: 'vaenrR+NNARkO81BRsbLeOEpbIOFeRnpvYOlWZ9Z'
+      #     AWS_GHA_ROLE: 'arn:aws:iam::980500377192:role/LabRole'
         
+      - name: Deploy to S3
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: 'ASIA6ISTANZUHKPCO2WD'
+          aws-secret-access-key: 'vaenrR+NNARkO81BRsbLeOEpbIOFeRnpvYOlWZ9Z'
+          aws-region: 'us-east-1'
+
+      - name: Sync files to S3
+        run: aws s3 sync dist/ s3://fitbody-frontend-build-file --acl public-read --delete
+
       # - name: Deploy to S3
       #   uses: drewble/s3-upload-github-action@0.1.4
         # with:
