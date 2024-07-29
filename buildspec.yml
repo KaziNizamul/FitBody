@@ -1,7 +1,8 @@
 version: 0.2
+
 env:
   variables:
-    S3_BUCKET: "fitbody-bucket"
+    S3_BUCKET: "fitbody-bucket-1"
 
 phases:
   install:
