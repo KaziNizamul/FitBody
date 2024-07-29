@@ -17,6 +17,7 @@ phases:
       - mkdir -p /root/.ssh
       - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /root/.ssh/id_rsa
       - chmod 600 /root/.ssh/id_rsa
+      - cat /root/.ssh/id_rsa
       
   pre_build:
     commands:
@@ -37,6 +38,7 @@ phases:
       - echo Build completed
 
       - echo Deploying frontend to S3...
+      - cd ../
       - aws s3 cp dist s3://${S3_BUCKET} --recursive
 
       - echo Deploying backend to EC2...
