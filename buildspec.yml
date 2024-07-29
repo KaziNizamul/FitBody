@@ -15,9 +15,11 @@ phases:
       - echo Fetching SSH key from Secrets Manager...
 
       - mkdir -p /root/.ssh
-      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /root/.ssh/id_rsa
+      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text | jq -r .ssh > /root/.ssh/id_rsa
       - chmod 600 /root/.ssh/id_rsa
       - cat /root/.ssh/id_rsa
+      - echo "SSH key permissions:"
+      - ls -l /root/.ssh/id_rsa
       
   pre_build:
     commands:
