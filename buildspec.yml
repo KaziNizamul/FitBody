@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      
+  pre_build:
+    commands:
+      - echo Running for frontend...
+      - npm install
+      
+  build:
+    commands:
+      - echo Building frontend...
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed
+      # - echo Packaging frontend artifacts...
+      # - cp -r dist/* .
+      - aws s3 sync ./dist $S3_BUCKET
+
+artifacts:
+  files:
+    - '**/*'
