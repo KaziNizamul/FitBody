@@ -5,8 +5,7 @@ Parameters:
     Default: FitBody-Amplify
   GitHubToken:
     Type: String
-    Description: The GitHub OAuth token stored in AWS Systems Manager Parameter Store
-    Default: /github/oauth/token
+    Description: The GitHub OAuth token for accessing the repository
   Repository:
     Type: String
     Default: https://github.com/KaziNizamul/FitBody
@@ -27,6 +26,7 @@ Resources:
       Name: !Ref AppName
       Repository: !Ref Repository
       OauthToken: !Ref GitHubToken
+      IAMServiceRole: !Ref AmplifyServiceRole
       EnvironmentVariables:
         - Name: NODE_ENV
           Value: production
@@ -57,21 +57,18 @@ Resources:
             baseDirectory: server
             files:
               - '**/*'
-      ServiceRole: !Ref AmplifyServiceRole
 
   AmplifyBranch:
     Type: AWS::Amplify::Branch
     Properties:
-      AppId: !Ref AmplifyApp
+      AppId: !GetAtt AmplifyApp.AppId
       BranchName: !Ref BranchName
       EnableAutoBuild: true
-      BasicAuthConfig:
-        EnableBasicAuth: false
 
 Outputs:
   AmplifyAppId:
     Description: The ID of the Amplify app
-    Value: !Ref AmplifyApp
+    Value: !GetAtt AmplifyApp.AppId
   AmplifyAppUrl:
     Description: The URL of the Amplify app
     Value: !GetAtt AmplifyApp.DefaultDomain
