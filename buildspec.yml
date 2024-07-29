@@ -14,8 +14,8 @@ phases:
 
       - echo Fetching SSH key from Secrets Manager...
 
-      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /root/.ssh/id_rsa
-      - chmod 600 /root/.ssh/id_rsa
+      - aws secretsmanager get-secret-value --secret-id ${SECRET_NAME} --query SecretString --output text > /tmp/id_rsa
+      - chmod 600 /tmp/id_rsa
       
   pre_build:
     commands:
@@ -39,7 +39,7 @@ phases:
       - aws s3 cp dist s3://${S3_BUCKET} --recursive
 
       - echo Deploying backend to EC2...
-      - ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ec2-user@${EC2_HOST} 'cd /home/ec2-user/FitBody/server && git pull origin main && npm install && pm2 restart all'
+      - ssh -o StrictHostKeyChecking=no -i /tmp/id_rsa ec2-user@${EC2_HOST} 'cd /home/ec2-user/FitBody/server && git pull origin main && npm install && pm2 restart all'
       - echo Build completed on `date`
 
 
