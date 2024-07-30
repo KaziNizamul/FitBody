@@ -41,7 +41,7 @@ phases:
       - aws s3 cp dist s3://${S3_BUCKET} --recursive
 
       - echo Deploying backend to EC2...
-      - ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ec2-user@${EC2_HOST} 'cd /home/ec2-user/FitBody/server && git pull origin main && npm install && pm2 startOrRestart index.js --name FitBody'
+      - ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ec2-user@${EC2_HOST} 'cd /home/ec2-user/FitBody/server && git pull origin main && npm install && pm2 start index.js --name FitBody'
       - echo Build completed on `date`
 
 
