@@ -56,7 +56,7 @@ server.use((obj, req, res, next) => {
 // Database connection Function 
 const ConnetMongoDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/fitbody');  
+        await mongoose.connect('mongodb+srv://user:J9aIUAgQLgdL3GFp@cluster0.pbxp3ov.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');  
         console.log('DB connected !');
     } catch (error) { 
        console.error('Error: ', error);
