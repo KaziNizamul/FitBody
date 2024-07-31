@@ -14,15 +14,20 @@ const ContactUs = () => {
   const validateForm = () => {
     if (formData.name === "" || formData.name === null) {
       toast.error("please enter your name");
+      return false;
     } else if (formData.email === "" || formData.email === null) {
       toast.error("please enter your email");
+      return false;
     } else if (!isValidEmail(formData.email)) {
       toast.error("Please enter a valid email");
+      return false;
     } else if (formData.message === "" || formData.message === null) {
       toast.error("please provide a message");
+      return false;
     } else {
       toast.success("Form submitted successfully");
       console.log("contact form: ", formData);
+      return true;
     }
   };
 
@@ -32,11 +37,41 @@ const ContactUs = () => {
     return emailPattern.test(email);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
       console.log("Form data:", formData);
+      const response = await fetch(`${import.meta.env.VITE_LAMBDA_API}/sendContactMsg`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: formData.name,
+          userEmail: formData.email,
+          message: formData.message,
+        }),
+      });
+      const data = await response.json();
+      const result = JSON.parse(data?.body || {});
+      if (response.ok) {
+        toast.success(
+          result.message || "Something went wrong, please try again",
+          {
+            duration: 3000,
+            position: "top-center",
+          }
+        );
+      } else {
+        toast.error(
+          result.message || "Something went wrong, please try again",
+          {
+            duration: 3000,
+            position: "top-center",
+          }
+        );
+      }
     }
   };
 
