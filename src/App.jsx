@@ -22,6 +22,8 @@ import PrivacyPolicy from "./components/UI/privacypolicy";
 import Licensing from "./components/UI/Licensing";
 import TermsAndConditions from "./components/UI/termsandconditions";
 
+import PaymentStatus from './components/UI/PaymentStatus/PaymentStatus';
+
 import { BrowserRouter as Router , Routes, Route } from "react-router-dom";
 import Error from "./components/UI/Error";
 
@@ -61,6 +63,9 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/payment-success" element={<PaymentStatus status="success" />} />
+          <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
 
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/licensing" element={<Licensing />} />

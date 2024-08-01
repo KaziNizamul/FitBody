@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import "../../styles/contactUs.css";
 import Lottie from "lottie-react";
 import ContactAnimation from "../../assets/JSON/contactus.json";
@@ -82,6 +82,7 @@ const ContactUs = () => {
 
   return (
     <section id="contact-us" className="form">
+      <Toaster />
       <div className="w-full form grid justify-center items-center">
         <div className="contact-animation">
           <Lottie animationData={ContactAnimation} />
