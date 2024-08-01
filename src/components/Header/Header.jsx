@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
 gsap.registerPlugin(useGSAP);
 
@@ -33,6 +33,7 @@ const nav__links = [
 ];
 const Header = ({ isDarkMode, setDarkMode }) => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 	const [loggedOut, setLoggedOut] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(
     isDarkMode ? "#111" : "#fff"
