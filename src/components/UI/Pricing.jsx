@@ -54,6 +54,7 @@ const Pricing = () => {
   const [clientSecret, setClientSecret] = useState(null);
 
   const handleStripePayment = async (amount) => {
+    const stripe = await loadStripe(String(import.meta.env.VITE_STRIPE_PK));
     try {
       const response = await fetch(`${import.meta.env.VITE_LAMBDA_API}/payments`, {
         method: 'POST',
