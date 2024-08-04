@@ -26,7 +26,6 @@ phases:
       - echo Build completed
 
       - echo Deploying frontend to S3...
-      - cd ../
       - aws s3 cp dist s3://${S3_BUCKET} --recursive
 
 artifacts:
