@@ -1,46 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
+import Header from "../../Header/Header";
+import { useNavigate } from "react-router-dom";
 import styles from "./PaymentStatus.module.scss";
 
 function PaymentStatus({ status }) {
-  const isSuccess = status === "success";
   const navigate = useNavigate();
+  const isSuccess = status === "success";
+
+  useEffect(() => {
+    if (isSuccess) {
+      const userData = JSON.parse(localStorage.getItem('userData')) || {};
+      const modifiedUserData = { ...userData, paidClient: true };
+      localStorage.setItem('userData', JSON.stringify(modifiedUserData));
+    }
+  }, [isSuccess]);
+
+  const handleButtonClick = () => {
+    if (isSuccess) {
+      navigate("/");
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
-    <div className={styles.paymentStatusContainer}>
-      <div className={styles.paymentStatusLogo}></div>
-      <div className={styles.paymentStatusMessage}>
-        <h2 style={{ display: "flex", flexDirection: "column" }}>
-          {isSuccess ? "Payment Successful" : "Payment Failed"}{" "}
-          <span className={isSuccess ? styles.checkmark : styles.crossmark}>
-            {isSuccess ? "✅" : "❌"}
-          </span>
-          {isSuccess ? (
-            <Link
+    <>
+      <Header />
+      <div className={styles.paymentStatusContainer}>
+        <div className={styles.paymentStatusLogo}></div>
+        <div className={styles.paymentStatusMessage}>
+          <h2
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+              width: "27rem",
+              height: "7rem",
+            }}
+          >
+            {isSuccess ? "Payment Successful" : "Payment Failed"}{" "}
+            <button
               style={{
                 border: "none",
                 borderRadius: "2rem",
                 padding: "1rem",
-                boxShadow: "inset 0px -35px 80px -57px green",
-                fontSize: "0.9rem"
-              }} 
-              to="/"
-            >Go Back to Main Page</Link>
-          ) : (
-            <Link
-              style={{
-                border: "none",
-                borderRadius: "2rem",
-                padding: "1rem",
-                boxShadow: "inset 0px -35px 80px -57px green",
-              }} 
-              to="/"
-            >Go Back</Link>
-          )}
-        </h2>
+                color: isSuccess ? "green" : "red",
+                boxShadow: `inset 0px -35px 80px -57px ${isSuccess ? "green" : "red"}`,
+                fontSize: "0.9rem",
+                cursor: "pointer",
+              }}
+              onClick={handleButtonClick}
+            >
+              {isSuccess ? "Go Back to Main Page" : "Go Back"}
+            </button>
+          </h2>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

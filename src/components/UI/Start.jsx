@@ -35,8 +35,8 @@ const Start = () => {
               determination – you're on the road to a healthier, happier you.{" "}
             </p>
 
-            <button className="register_btn" style={{'margin':'5px'}}><Link to="/classes">Free Workout</Link></button>
-            <button className="register_btn"><Link to="/diet">Free Diet</Link></button>
+            <button className="register_btn" style={{'margin':'5px'}}><Link to="/classes"> Workout</Link></button>
+            <button className="register_btn"><Link to="/diet"> Diet</Link></button>
           </div>
         </div>
       </div>

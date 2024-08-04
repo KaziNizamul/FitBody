@@ -100,7 +100,7 @@ const Classes = () => {
             <div className={isDarkMode ? "dark-mode-app" : "light-mode-app"}>
                 <Header className="header" isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
                 <div className="exercise-container">
-                    <h1>Workouts For Free</h1>
+                    <h1>Workouts</h1>
                     {exercises.map((exercise, index) => (
                         <div key={index} className="exercise-card">
                             <div className="exercise-details">

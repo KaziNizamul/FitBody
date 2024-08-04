@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
 gsap.registerPlugin(useGSAP);
 
+const userData = JSON.parse(localStorage.getItem('userData')) || {};
+
 const nav__links = [
   {
     path: "#home",
@@ -18,14 +20,14 @@ const nav__links = [
     path: "#schedule",
     display: "Schedule",
   },
-  {
+  ...(userData?.paidClient ? [{
     path: "#classes",
     display: "Classes",
-  },
-  {
+  }] : []),
+  ...(!(userData?.paidClient) ? [{
     path: "#pricing-plan",
     display: "Pricing",
-  },
+  }] : []),
   {
     path: "#contact-us",
     display: "Contact Us",

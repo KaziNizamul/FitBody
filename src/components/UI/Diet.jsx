@@ -134,7 +134,7 @@ const Diet = () => {
       <div className={isDarkMode ? "dark-mode-app" : "light-mode-app"}>
         <Header className="header" isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
         <div className="exercise-container">
-          <h1>Free Diet Plan</h1>
+          <h1> Diet Plan</h1>
           <div className="diet-container">
             {Object.keys(dietData).map(meal => (
               <div key={meal} className="meal-card">
