@@ -5,7 +5,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import toast, { Toaster } from 'react-hot-toast';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
-const stripe = await loadStripe(String(import.meta.env.VITE_STRIPE_PK));
+const stripe = loadStripe(String(import.meta.env.VITE_STRIPE_PK));
 
 const CheckoutForm = ({ clientSecret, amount }) => {
   const stripe = useStripe();
