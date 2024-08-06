@@ -63,6 +63,7 @@ const ContactUs = () => {
             position: "top-center",
           }
         );
+        setFormData({ name: "", email: "", message: "" });
       } else {
         toast.error(
           result.message || "Something went wrong, please try again",

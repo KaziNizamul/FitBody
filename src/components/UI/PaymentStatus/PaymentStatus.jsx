@@ -19,6 +19,7 @@ function PaymentStatus({ status }) {
   const handleButtonClick = () => {
     if (isSuccess) {
       navigate("/");
+      window.location.reload();
     } else {
       navigate(-1);
     }

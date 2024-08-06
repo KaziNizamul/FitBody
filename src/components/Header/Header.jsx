@@ -110,6 +110,7 @@ const Header = ({ isDarkMode, setDarkMode }) => {
       localStorage.removeItem("userData");
 			setLoggedOut(true);
       navigate("/");
+      window.location.reload();
     } catch (err) {
       toast.error(err?.message || "logout failed", {
         duration: 3000,
